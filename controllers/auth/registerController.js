@@ -2,16 +2,10 @@ import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtService from "../../services/jwtService";
 import bcrypt from 'bcrypt';
 import { User } from "../../models";
-import { registerValidator } from "../../validators";
 
 const registerController ={
     async register(req,res,next){
         try {
-            const { error } = registerValidator.validate(req.body);
-            console.log(req.body);
-            if (error) {
-                return next(error);
-            }
 
             const {name,email , password} = req.body;
             const exist = await User.exists({email:email});

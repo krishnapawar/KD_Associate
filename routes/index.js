@@ -1,12 +1,21 @@
 import express from "express";
 const router = express.Router();
-import {
-    registerController,
-    loginController
-} from "../controllers";
+//controller
+import { registerController, loginController, productController } from "../controllers";
 
+//validators
+import { loginValidator,registerValidator } from "../validators/authValidator";
+import {storeValidator} from "../validators/productValidator";
 
-router.post('/register',registerController.register);
-router.post('/login',loginController.login);
+//auth routes
+router.post('/register',registerValidator,registerController.register);
+router.post('/login',loginValidator,loginController.login);
+
+//product routes
+router.post('/product',storeValidator,productController.store);
+router.put('/product/:id',storeValidator,productController.update);
+router.delete('/product/:id',productController.destroy);
+router.get('/product/:id',productController.showOne);
+router.get('/product',productController.show);
 
 export default router;

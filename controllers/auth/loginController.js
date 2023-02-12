@@ -2,16 +2,10 @@ import { User } from "../../models";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
 import JwtService from "../../services/jwtService";
 import bcrypt from "bcrypt";
-import { loginValidator } from "../../validators";
 
 const loginController = {
   async login(req, res, next) {
     try {
-          const { error } = loginValidator.validate(req.body);
-
-          if (error) {
-            return next(error);
-          }
           const { email,password} = req.body;
           const user = await User.findOne({ email: email });
           if (!user) {

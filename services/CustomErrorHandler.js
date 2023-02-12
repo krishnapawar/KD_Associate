@@ -10,5 +10,8 @@ class CustomErrorHandler extends Error {
     static invailidCredential(message="invalid email or password!"){
         return new CustomErrorHandler(401,message);
     }
+    static notFound(message="No data found!"){
+        return new CustomErrorHandler(404,message);
+    }
 }
 export default CustomErrorHandler;
