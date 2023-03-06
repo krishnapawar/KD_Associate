@@ -4,7 +4,9 @@ const productController ={
     async store(req, res, next)
     {
         try {
-            const {name,decription,price,category,image} =req.body;
+            console.log(req.file.path.replace("\\","/"));
+            const image = req.file.path.replace("\\","/");
+            const {name,decription,price,category} =req.body;
             const product = await Product.create({name,decription,price,category,image});
             return res.status(200).json({
                 status:"success",

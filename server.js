@@ -4,6 +4,7 @@ import { PORT,DB_URL } from "./config";
 import errorHandler from "./middlewires/errorHandler";
 const app = express();
 import router from "./routes";
+import path from "path";
 
 //database connection
 mongoose.connect(DB_URL,
@@ -17,6 +18,8 @@ db.once('open',()=>{
     console.log('DB connected.....');
 });
 
+global.appRoot = path.resolve(__dirname);
+app.use(express.urlencoded({extended:false}));
 
 app.use(express.json());
 
