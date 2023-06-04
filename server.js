@@ -1,10 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
-import { PORT,DB_URL } from "./config";
-import errorHandler from "./middlewires/errorHandler";
+import { PORT,DB_URL } from "./src/config";
+import errorHandler from "./src/middlewires/errorHandler";
+import cors from "cors";
 const app = express();
-import router from "./routes";
+import router from "./src/routes";
 import path from "path";
+
+app.use(cors());
 
 //database connection
 mongoose.connect(DB_URL,
